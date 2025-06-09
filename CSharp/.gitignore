@@ -1,0 +1,46 @@
+## Общие файлы для исключения ##
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+*.cache
+*.pidb
+*.DS_Store
+Thumbs.db
+
+## Visual Studio ##
+.vs/
+.vscode/
+*.VC.db
+*.opendb
+*.opensdf
+*.sdf
+*.log
+*.tlog
+
+## Xamarin ##
+[Xx]amarin/
+*.DS_Store
+*.backup.*
+*.orig
+TestResult.xml
+*.apk
+*.ipa
+*.aab
+*.keystore
+*.jks
+
+## NuGet ##
+packages/
+[Nn]u[Gg]et.[Ee]x[Ee]
+*.nupkg
+
+## macOS ##
+.DS_Store
+._*
+
+## Rider/VS Code ##
+.idea/
+*.swp
+*.swo

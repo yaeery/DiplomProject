@@ -1,0 +1,8 @@
+﻿1000_rub
+100_rub
+10_rub
+2000_rub
+5000_rub
+500_rub
+50_rub
+5_rub

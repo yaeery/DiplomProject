@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Diplom2.MainPage">
+
+    <StackLayout x:Name="MainStacklayout">
+        <Grid RowSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6.2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Frame Grid.Column="0" Grid.Row="0" IsVisible="true" x:Name="MicroFrame" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="White" CornerRadius="60" BorderColor="#BE01BE">
+                <Image x:Name="MicroImage" Source="Micro.png"></Image>
+            </Frame>
+
+            <StackLayout Grid.Column="0" Grid.Row="0" x:Name="RecognizeStackLayout" IsVisible="false">
+                <xct:CameraView x:Name="cameraView" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="685"
+                        CameraOptions="Back"   CaptureMode="Photo" MediaCaptured="cameraView_MediaCaptured" />
+            </StackLayout>
+
+            <Frame Grid.Column="0" Grid.Row="0" IsVisible="false" x:Name="OpisImageFrame">
+                <StackLayout x:Name="OpisImageStack">
+                    <Grid x:Name="OpisImageGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Column="0" Grid.Row="0" x:Name="SelectImageForOpis" Clicked="SelectImageForOpis_Clicked"  Text="Выбрать фото" BackgroundColor="#ffffff" BorderColor="#BE01BE" CornerRadius="20" TextColor="#BE01BE" BorderWidth="3"></Button>
+                        <Image Grid.Column="0" Grid.Row="1" x:Name="ImageForOpis" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="600" WidthRequest="600"></Image>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+            <Frame Grid.Column="0" Grid.Row="0" x:Name="SubtitrsFrame" IsVisible="false">
+                <StackLayout x:Name="SubtitrsStackLayout">
+                    <Grid x:Name="SubtitersGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="6*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Column="0" Grid.Row="0" x:Name="SelectFileFromSub" Clicked="SelectFileFromSub_Clicked" Text="Выбрать видео" BackgroundColor="#ffffff" BorderColor="#BE01BE" CornerRadius="20" TextColor="#BE01BE" BorderWidth="3"></Button>
+                        <Label Grid.Column="0" Grid.Row="2" x:Name="SubtitrsLabel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="#BE01BE" FontSize="20"></Label>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+
+            <StackLayout Grid.Column="0" Grid.Row="0" x:Name="SettingStackLayout" IsVisible="false" Margin="0,20,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Column="0" x:Name="LangImage" Grid.Row="0" Source="Lang.png"></Image>
+                    <Label Grid.Column="1" Grid.Row="0" x:Name="LangugeText" Text="Язык" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="#BE01BE"></Label>
+                    <Button Grid.Column="2" Grid.Row="0" x:Name="ChangeLanguge" Clicked="ChangeLanguge_Clicked" Text="Русский" TextColor="#BE01BE" BackgroundColor="White" BorderColor="#BE01BE" BorderWidth="1" CornerRadius="30"></Button>
+
+                    <Image Grid.Column="0" x:Name="ThemeImage" Grid.Row="1" Source="Theme.png"></Image>
+                    <Label Grid.Column="1" Grid.Row="1" x:Name="ThemeText" Text="Темная тема" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="#BE01BE"></Label>
+                    <Switch Grid.Column="2" Grid.Row="1" x:Name="SwitchTheme" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ThumbColor="#BE01BE" Toggled="SwitchTheme_Toggled"></Switch>
+
+                    <Image Grid.Column="0" x:Name="TellImage" Grid.Row="2" Source="TelDey.png"></Image>
+                    <Label Grid.Column="1" Grid.Row="2" x:Name="TellText" Text="Озвучивание" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="#BE01BE"></Label>
+                    <Switch Grid.Column="2" Grid.Row="2" x:Name="TellSwitch" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ThumbColor="#BE01BE" Toggled="TellSwitch_Toggled"></Switch>
+
+                    <Image Grid.Column="0" Grid.Row="3" x:Name="VibroImage"  Source="Hear.png"></Image>
+                    <Label Grid.Column="1" Grid.Row="3" x:Name="VibroText" Text="Вибрация" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="#BE01BE"></Label>
+                    <Switch Grid.Column="2" Grid.Row="3" x:Name="VibroSwitch" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ThumbColor="#BE01BE" Toggled="VibroSwitch_Toggled"></Switch>
+
+                    <Image Grid.Column="0" Grid.Row="4" x:Name="OffMicro"  Source="OffMicro.png"></Image>
+                    <Label Grid.Column="1" Grid.Row="4" x:Name="OffMicroText" Text="Микрофон" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="#BE01BE"></Label>
+                    <Switch Grid.Column="2" Grid.Row="4" x:Name="OffMicroSwitch" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ThumbColor="#BE01BE" Toggled="OffMicroSwitch_Toggled"></Switch>
+
+                    <Image Grid.Column="0" Grid.Row="5" x:Name="OffCamera"  Source="OffCamera.png"></Image>
+                    <Label Grid.Column="1" Grid.Row="5" x:Name="OffCameraText" Text="Камера" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="#BE01BE"></Label>
+                    <Switch Grid.Column="2" Grid.Row="5" x:Name="OffCameraSwitch" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ThumbColor="#BE01BE" Toggled="OffCameraSwitch_Toggled"></Switch>
+
+
+                    <Image Grid.Column="0" Grid.Row="6" x:Name="BlockVision"  Source="BlockVision.png"></Image>
+                    <Label Grid.Column="1" Grid.Row="6" x:Name="BlockVisionText" Text="Образы" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="#BE01BE"></Label>
+                    <Switch Grid.Column="2" Grid.Row="6" x:Name="BlockVisionSwitch" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ThumbColor="#BE01BE" Toggled="BlockVisionSwitch_Toggled" ></Switch>
+
+                    <Image Grid.Column="0" Grid.Row="7" x:Name="BlockListn"  Source="BlockListn.png"></Image>
+                    <Label Grid.Column="1" Grid.Row="7" x:Name="BlockListnText" Text="Субтитры" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="#BE01BE"></Label>
+                    <Switch Grid.Column="2" Grid.Row="7" x:Name="BlockListnSwitch" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ThumbColor="#BE01BE" Toggled="BlockListnSwitch_Toggled" ></Switch>
+
+
+                    <Image Grid.Column="0" Grid.Row="8" x:Name="NameAssist"  Source="NameAssist.png"></Image>
+                    <Label Grid.Column="1" Grid.Row="8" x:Name="NameAssistText" Text="Имя" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="#BE01BE"></Label>
+                    <Entry Grid.Column="2" Grid.Row="8" x:Name="NameAssistEntry" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="#BE01BE" Focused="NameAssistEntry_Focused"></Entry>
+                </Grid>
+            </StackLayout>
+
+
+
+
+            <Frame Grid.Column="0" Grid.Row="1" x:Name="MainFrame" BackgroundColor="#BE01BE" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                <ScrollView x:Name="MainScroll" Orientation="Horizontal" HorizontalScrollBarVisibility="Never" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <StackLayout x:Name="MainStackLayout" Orientation="Horizontal" Spacing="20">
+                        <Button x:Name="MicroButton" BorderColor="White" BorderWidth="2" ImageSource="MicroSmall.png" BackgroundColor="#BE01BE" CornerRadius="20" Clicked="MicroButton_Clicked"></Button>
+                        <Button x:Name="TextButton" BorderColor="White" BorderWidth="2" ImageSource="Text.png" BackgroundColor="#BE01BE" CornerRadius="20" Clicked="TextButton_Clicked"></Button>
+                        <Button x:Name="MoneyButton" BorderColor="White" BorderWidth="2" ImageSource="Money.png" BackgroundColor="#BE01BE" CornerRadius="20" Clicked="MoneyButton_Clicked" ></Button>
+                        <Button x:Name="ObrazButton" BorderColor="White" BorderWidth="2" ImageSource="Obraz.png" BackgroundColor="#BE01BE" CornerRadius="20" Clicked="ObrazButton_Clicked" ></Button>
+                        <Button x:Name="ImageOpisButton" BorderColor="White" BorderWidth="2" ImageSource="Image.png" BackgroundColor="#BE01BE" CornerRadius="20" Clicked="ImageOpisButton_Clicked" ></Button>
+                        <Button x:Name="SubtitrsButton" BorderColor="White" BorderWidth="2" ImageSource="Subtitrs.png" BackgroundColor="#BE01BE" CornerRadius="20" Clicked="SubtitrsButton_Clicked"></Button>
+                        <Button x:Name="SettingButton" BorderColor="White" BorderWidth="2" ImageSource="Setting.png" BackgroundColor="#BE01BE" CornerRadius="20" Clicked="SettingButton_Clicked" ></Button>
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+        </Grid>
+    </StackLayout>
+</ContentPage>
